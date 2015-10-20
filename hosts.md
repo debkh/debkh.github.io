@@ -131,9 +131,10 @@
 
 	~/sites/mysite.loc/
 с содержимым 
+
 	<html>
 	<head>
-	<title> IT works </titlw>
+	<title> IT works </title>
 	</head>
 	<body>
 	<h1>IT Works</h1>
