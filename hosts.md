@@ -14,28 +14,28 @@
 
 		/var/www
 		
-Я предлагаю хранить сайты в директории пользователя в папке ```sites```
+Я предлагаю хранить сайты в директории пользователя в папке ```projects```
 Для начала создадим данную директорию командой:
 
-		mkdir /home/<имя пользователя>/sites
+		mkdir /home/<имя пользователя>/projects
 либо:
 
-		mkdir ~/sites
+		mkdir ~/projects
 		
 внутри этой папки я предлагаю такую организацию хранения файлов
 
 		- home
 		- - <Имя Пользователя>
-		- - - sites
-		- - - - <имя виртуального домена 1 например mysyte.loc>
+		- - - projects
+		- - - - <имя виртуального домена 1 например mysyte.dev>
 		- - - - <имя виртуального домена 2>
 		- - - - ...
 		
  **Обратите внимание :**
  
-** *1. linux позволяет создание директорий содержащих в своём имени точку* **
+** 1. linux позволяет создание директорий содержащих в своём имени точку **
 
-** *2. для работы на локальной машине я рекомендую использовать доменные зоны .loc (сокращение от local) или .dev (сокращение от development)* **
+** 2. для работы на локальной машине я рекомендую использовать доменные зоны .dev (сокращение от development) или .loc (сокращение от local) **
 
 В корне данных директорий мы будем размещать файлы и папки наших проектов
 
@@ -52,12 +52,12 @@
 ** * В некоторых случаях имя может быть 000-default.conf но это чаще всего свойственно Rad Hat Enterprise Linux, CentOS и Ubuntu версий выше чем 12.04 **
 для начала создадим копию данного файла с именем ```<имя домена>.conf```
 
-	sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/mysyte.loc.conf
+	sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/mysyte.dev.conf
 	
 Откроем данный файл в текстовом редакторе чтобы изучить его содержимое:
 
-	sudo gedit  /etc/apache2/sites-available/mysyte.loc.conf
-в окне редактора gedit должно открться содержисое файла ```mysyte.loc.conf```
+	sudo gedit  /etc/apache2/sites-available/mysyte.dev.conf
+в окне редактора gedit должно открться содержисое файла ```mysyte.dev.conf```
 
 	<VirtualHost *:80>
 	
@@ -95,10 +95,10 @@
 Приведем файл к нужному нам виду и избавимся от лишних коментариев
 
 	<VirtualHost *:80>
-    	ServerAdmin webmaster@mysyte.loc
-    	ServerName mysite.loc
-    	ServerAlias www.mysite.loc
-    	DocumentRoot /home/<Имя пользователя>/sites/mysite.loc
+    	ServerAdmin webmaster@mysyte.dev
+    	ServerName mysite.dev
+    	ServerAlias www.mysite.dev
+    	DocumentRoot /home/<Имя пользователя>/projects/mysite.dev
     	ErrorLog ${APACHE_LOG_DIR}/error.log
     	CustomLog ${APACHE_LOG_DIR}/access.log combined
 	</VirtualHost>
@@ -106,7 +106,7 @@
 Далее воспользуемся утилитой ```a2ensite``` (устанавливается вмесе с вебсервером)
 для включения нашего сайта
 
-	sudo a2ensite mysite.loc.conf
+	sudo a2ensite mysite.dev.conf
 После данной операции надо перезапустить веб-сервер командой
 
 	sudo service apache2 restart
@@ -126,10 +126,10 @@
 	127.0.1.1	<имя вашего компьютераЮ
 В конце файла добавляем строку
 
-	127.0.0.1	mysite.loc
+	127.0.0.1	mysite.dev
 После этого создаем файл index.html в директории 
 
-	~/sites/mysite.loc/
+	~/projects/mysite.dev/
 с содержимым 
 
 	<html>
